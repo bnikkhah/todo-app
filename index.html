@@ -14,9 +14,86 @@
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
+  <main role="main" class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>TODO</h1>
+          <div class="input-group mb-4">
+            <div class="input-group-text">
+              <input
+                class="form-check-input mt-0"
+                type="checkbox"
+                value=""
+                aria-label="Checkbox for following text input"
+              />
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Text input with checkbox"
+              placeholder="Create a new todo..."
+            />
+          </div>
+          <div class="todo-list shadow" x-data="{ todos: [ 'A1', 'B1', 'C1' ], done: false }">
+            <ul class="list-group">
+              <template x-for="todo in todos">
+                <li class="list-group-item p-0">
+                  <div class="input-group">
+                    <div class="input-group-text">
+                      <input
+                        class="form-check-input mt-0"
+                        type="checkbox"
+                        value=""
+                        aria-label="Checkbox for following text input"
+                        @click="done = !done"
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="{ 'done' : done }"
+                      aria-label="Text input with checkbox"
+                      :value="todo"
+                    />
+                  </div>
+                </li>
+              </template>
+            </ul>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="meta">
+                  <div class="row">
+                    <div class="col">
+                      <span>5 items left</span>
+                    </div>
+                    <div class="col">
+                      <ul class="list-inline">
+                        <li class="list-inline-item cursor">All</li>
+                        <li class="list-inline-item cursor">Active</li>
+                        <li class="list-inline-item cursor">Completed</li>
+                      </ul>
+                    </div>
+                    <div class="col">
+                      <span class="cursor">Clear completed</span>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <p>Drag and drop to reorder list</p>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
