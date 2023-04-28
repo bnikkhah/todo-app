@@ -26,7 +26,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
+
           <h1>TODO</h1>
+
+          <!-- Todo insert -->
           <div class="input-group mb-4">
             <div class="input-group-text">
               <input
@@ -43,9 +46,14 @@
               placeholder="Create a new todo..."
             />
           </div>
-          <div class="todo-list shadow" x-data="{ todos: [ 'A1', 'B1', 'C1' ], done: false }">
+
+          <!-- Todo list -->
+          <div
+            class="todo-list shadow"
+            x-data="todoData"
+          >
             <ul class="list-group">
-              <template x-for="todo in todos">
+              <template x-for="(todo, index) in todos">
                 <li class="list-group-item p-0">
                   <div class="input-group">
                     <div class="input-group-text">
@@ -62,8 +70,15 @@
                       class="form-control"
                       :class="{ 'done' : done }"
                       aria-label="Text input with checkbox"
-                      :value="todo"
+                      :value="todo.item"
                     />
+                    <button
+                      type="button"
+                      class="btn-close"
+                      aria-label="Close"
+                      @click="handleRemoveTodo(todo)"
+                    >
+                    </button>
                   </div>
                 </li>
               </template>
@@ -90,6 +105,7 @@
               </li>
             </ul>
           </div>
+
           <p>Drag and drop to reorder list</p>
         </div>
       </div>
@@ -97,3 +113,30 @@
   </main>
 </body>
 </html>
+
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('todoData', () => ({
+      done: false,
+      todos: [
+        {
+          id: 1,
+          item: 'A1',
+        },
+        {
+          id: 2,
+          item: 'B1',
+        },
+        {
+          id: 3,
+          item: 'C1',
+        },
+      ],
+      handleRemoveTodo(todoToRemove) {
+        this.todos = this.todos.filter((todo) => todo.id !== todoToRemove.id)
+      },
+      handleAddTodo() {
+      }
+    }))
+  })
+</script>

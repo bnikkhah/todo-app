@@ -31,12 +31,23 @@ body {
     cursor: pointer;
 }
 
+.input-group {
+
+    .btn-close {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
 .input-group-text {
     background-color: $white;
     border: 0;
 
     .form-check-input[type=checkbox] {
         border-radius: 9999px;
+        cursor: pointer;
     }
 }
 
@@ -44,6 +55,7 @@ body {
     border: 0;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    cursor: pointer;
 }
 
 .shadow {
