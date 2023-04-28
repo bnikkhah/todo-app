@@ -62,13 +62,13 @@
                         type="checkbox"
                         value=""
                         aria-label="Checkbox for following text input"
-                        @click="done = !done"
+                        @click="handleCompleteTodo(index)"
                       />
                     </div>
                     <input
                       type="text"
-                      class="form-control"
-                      :class="{ 'done' : done }"
+                      class="form-control todo-text"
+                      :class="{ 'isCompleted' : todo.isCompleted }"
                       aria-label="Text input with checkbox"
                       :value="todo.item"
                     />
@@ -76,7 +76,7 @@
                       type="button"
                       class="btn-close"
                       aria-label="Close"
-                      @click="handleRemoveTodo(todo)"
+                      @click="handleRemoveTodo(index)"
                     >
                     </button>
                   </div>
@@ -117,25 +117,40 @@
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('todoData', () => ({
-      done: false,
       todos: [
         {
-          id: 1,
-          item: 'A1',
+          item: 'Complete online Javascript course',
+          isCompleted: true
         },
         {
-          id: 2,
-          item: 'B1',
+          item: 'Jog around the park 3x',
+          isCompleted: false
         },
         {
-          id: 3,
-          item: 'C1',
+          item: '10 minutes meditation',
+          isCompleted: false
+        },
+        {
+          item: 'Read for 1 hour',
+          isCompleted: false
+        },
+        {
+          item: 'Pick up groceries',
+          isCompleted: false
+        },
+        {
+          item: 'Complete Todo App on Frontend Mentor',
+          isCompleted: false
         },
       ],
-      handleRemoveTodo(todoToRemove) {
-        this.todos = this.todos.filter((todo) => todo.id !== todoToRemove.id)
+      handleRemoveTodo(todoIndex) {
+        this.todos = this.todos.filter((_, index) => index !== todoIndex)
       },
       handleAddTodo() {
+      },
+      handleCompleteTodo(todoIndex) {
+        const temporaryTodos = [...this.todos];
+        temporaryTodos[todoIndex].isCompleted = !temporaryTodos[todoIndex].isCompleted;
       }
     }))
   })
