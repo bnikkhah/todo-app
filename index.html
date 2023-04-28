@@ -98,7 +98,12 @@
                       </ul>
                     </div>
                     <div class="col">
-                      <span class="cursor">Clear completed</span>
+                      <span
+                        class="cursor"
+                        @click="handleClearCompletedTodos"
+                      >
+                        Clear completed
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -151,6 +156,9 @@
       handleCompleteTodo(todoIndex) {
         const temporaryTodos = [...this.todos];
         temporaryTodos[todoIndex].isCompleted = !temporaryTodos[todoIndex].isCompleted;
+      },
+      handleClearCompletedTodos() {
+        this.todos = this.todos.filter((todo) => !todo.isCompleted)
       }
     }))
   })
