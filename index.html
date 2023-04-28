@@ -43,6 +43,7 @@
                 aria-label="Checkbox for following text input"
               />
             </div>
+
             <input
               type="text"
               class="form-control"
@@ -51,6 +52,7 @@
               x-model="todoText"
               @keydown.enter="handleInsertTodo"
             />
+            
           </div>
 
           <!-- Todo list -->
@@ -69,8 +71,10 @@
                         value=""
                         aria-label="Checkbox for following text input"
                         @click="handleCompleteTodo(index)"
+                        :checked="todo.isCompleted"
                       />
                     </div>
+
                     <input
                       type="text"
                       class="form-control todo-text"
@@ -78,6 +82,7 @@
                       aria-label="Text input with checkbox"
                       :value="todo.item"
                     />
+
                     <button
                       type="button"
                       class="btn-close"
@@ -191,7 +196,7 @@
         temporaryTodos[todoIndex].isCompleted = !temporaryTodos[todoIndex].isCompleted;
       },
       handleClearCompletedTodos() {
-        this.todos = this.todos.filter((todo) => !todo.isCompleted)
+        // this.todos = this.todos.filter((todo) => !todo.isCompleted)
       },
       handleTodosLeft() {
         const filteredList = this.todos.filter((todo) => !todo.isCompleted);
