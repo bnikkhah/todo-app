@@ -22,7 +22,11 @@
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-  <main role="main" class="text-center">
+  <main
+    role="main"
+    class="text-center"
+    x-data="todoData"
+  >
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -44,16 +48,18 @@
               class="form-control"
               aria-label="Text input with checkbox"
               placeholder="Create a new todo..."
+              x-model="todoText"
+              @keydown.enter="handleInsertTodo"
             />
           </div>
 
           <!-- Todo list -->
-          <div
-            class="todo-list shadow"
-            x-data="todoData"
-          >
+          <div class="todo-list shadow">
             <ul class="list-group">
-              <template x-for="(todo, index) in todos">
+              <template
+                x-for="(todo, index) in todos"
+                :key="index"
+              >
                 <li class="list-group-item p-0">
                   <div class="input-group">
                     <div class="input-group-text">
@@ -139,6 +145,7 @@
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('todoData', () => ({
+      todoText: '',
       todos: [
         {
           item: 'Complete online Javascript course',
@@ -165,10 +172,19 @@
           isCompleted: false
         },
       ],
+      handleInsertTodo() {
+        this.todos = [
+          ...this.todos,
+          {
+            item: this.todoText,
+            isCompleted: false
+          }
+        ]
+
+        this.todoText = '';
+      },
       handleRemoveTodo(todoIndex) {
         this.todos = this.todos.filter((_, index) => index !== todoIndex)
-      },
-      handleAddTodo() {
       },
       handleCompleteTodo(todoIndex) {
         const temporaryTodos = [...this.todos];
@@ -181,6 +197,15 @@
         const filteredList = this.todos.filter((todo) => !todo.isCompleted);
         return filteredList.length
       },
+      filterCompletedTodos() {
+
+      },
+      filterActiveTodos() {
+
+      },
+      filterAllTodos() {
+
+      }
     }))
   })
 </script>
