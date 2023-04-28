@@ -88,16 +88,33 @@
                 <div class="meta">
                   <div class="row">
                     <div class="col">
-                      <span>5 items left</span>
+                      <span>
+                        <span x-text="handleTodosLeft"></span> items left
+                      </span>
                     </div>
                     <div class="col">
                       <ul class="list-inline">
-                        <li class="list-inline-item cursor">All</li>
-                        <li class="list-inline-item cursor">Active</li>
-                        <li class="list-inline-item cursor">Completed</li>
+                        <li
+                          class="list-inline-item cursor"
+                          @click="filterAllTodos"
+                        >
+                          All
+                        </li>
+                        <li
+                          class="list-inline-item cursor"
+                          @click="filterActiveTodos"
+                        >
+                          Active
+                        </li>
+                        <li
+                          class="list-inline-item cursor"
+                          @click="filterCompletedTodos"
+                        >
+                          Completed
+                        </li>
                       </ul>
                     </div>
-                    <div class="col">
+                  <div class="col">
                       <span
                         class="cursor"
                         @click="handleClearCompletedTodos"
@@ -159,7 +176,11 @@
       },
       handleClearCompletedTodos() {
         this.todos = this.todos.filter((todo) => !todo.isCompleted)
-      }
+      },
+      handleTodosLeft() {
+        const filteredList = this.todos.filter((todo) => !todo.isCompleted);
+        return filteredList.length
+      },
     }))
   })
 </script>
