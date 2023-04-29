@@ -12050,21 +12050,58 @@ body {
   cursor: pointer;
 }
 
-.input-group .btn-close {
+.btn-close {
   position: absolute;
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 5;
+  background-image: url("../images/icon-cross.svg");
+}
+.btn-close:focus {
+  box-shadow: none;
+}
+@media (min-width: 768px) {
+  .btn-close {
+    display: none;
+  }
 }
 
 .input-group-text {
   background-color: #fff;
   border: 0;
 }
-.input-group-text .form-check-input[type=checkbox] {
+
+.form-check-input {
+  border-color: hsl(236, 33%, 92%);
+}
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: hsl(236, 33%, 92%);
+}
+.form-check-input:checked[type=checkbox] {
+  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  position: relative;
+  border: 0;
+}
+.form-check-input:checked[type=checkbox]:before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-image: url("../images/icon-check.svg");
+  width: 11px;
+  height: 9px;
+}
+.form-check-input[type=checkbox] {
   border-radius: 9999px;
   cursor: pointer;
+}
+
+.form-check-input {
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .form-control {
@@ -12072,6 +12109,10 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   cursor: pointer;
+  font-size: 18px;
+}
+.form-control:focus {
+  box-shadow: none;
 }
 
 .shadow {
@@ -12081,4 +12122,26 @@ body {
 .isCompleted {
   text-decoration: line-through;
   color: hsl(236, 33%, 92%);
+}
+
+.list-group-item:hover .btn-close, .list-group-item:focus .btn-close, .list-group-item:active .btn-close {
+  display: block;
+}
+
+.todo-main {
+  max-width: 600px;
+}
+
+.meta {
+  font-size: 14px;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+}
+.meta .col {
+  display: flex;
+  align-items: center;
+}
+
+.instruction {
+  color: hsl(236, 9%, 61%);
+  font-size: 14px;
 }/*# sourceMappingURL=styles.css.map */

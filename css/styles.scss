@@ -1,7 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $primary: hsl(220, 98%, 61%);
-$check: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+// $gradient: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
 $light: hsl(0, 0%, 98%);
 $dark: hsl(235, 21%, 11%);
 $grayish-blue: hsl(236, 33%, 92%);
@@ -31,25 +31,64 @@ body {
     cursor: pointer;
 }
 
-.input-group {
+.btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    background-image: url('../images/icon-cross.svg');
 
-    .btn-close {
-        position: absolute;
-        right: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 5;
+    &:focus {
+        box-shadow: none;
+    }
+
+    @include media-breakpoint-up(md) {
+        display: none;
     }
 }
 
 .input-group-text {
     background-color: $white;
     border: 0;
+}
 
-    .form-check-input[type=checkbox] {
+.form-check-input {
+    border-color: hsl(236, 33%, 92%);
+
+    &:focus {
+        box-shadow: none;
+        border-color: hsl(236, 33%, 92%);
+    }
+
+    &:checked[type=checkbox] {
+        // background-image: url('../images/icon-check.svg');
+        // background-size: 12px;
+        background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        position: relative;
+        border: 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: url('../images/icon-check.svg');
+            width: 11px;
+            height: 9px;
+        }
+    }
+        
+    &[type=checkbox] {
         border-radius: 9999px;
         cursor: pointer;
     }
+}
+
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
 }
 
 .form-control {
@@ -57,6 +96,12 @@ body {
     padding-top: 1rem;
     padding-bottom: 1rem;
     cursor: pointer;
+    font-size: 18px;
+
+    &:focus {
+        box-shadow: none;
+        // color: hsl(236, 33%, 92%);
+    }
 }
 
 .shadow {
@@ -66,4 +111,35 @@ body {
 .isCompleted {
     text-decoration: line-through;
     color: $grayish-blue;
+}
+
+.list-group-item {
+
+    &:hover,
+    &:focus,
+    &:active {
+
+        .btn-close {
+            display: block;
+        }
+    }
+}
+
+.todo-main {
+    max-width: 600px;
+}
+
+.meta {
+    font-size: 14px;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+
+    .col {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.instruction {
+    color: hsl(236, 9%, 61%);
+    font-size: 14px;
 }
