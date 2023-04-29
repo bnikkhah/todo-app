@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col-12">
 
-          <h1>TODO</h1>
+          <h1 class="text-white fw-bold text-start intro-heading">TODO</h1>
 
           <!-- Todo insert -->
           <div class="input-group mb-4">
@@ -56,7 +56,7 @@
           </div>
 
           <!-- Todo list -->
-          <div class="todo-list shadow">
+          <div class="todo-list my-shadow rounded">
             <ul class="list-group">
               <template
                 x-for="(todo, index) in todos"
@@ -195,6 +195,7 @@
       },
       handleClearCompletedTodos() {
         // this.todos = this.todos.filter((todo) => !todo.isCompleted)
+
       },
       handleTodosLeft() {
         const filteredList = this.todos.filter((todo) => !todo.isCompleted);

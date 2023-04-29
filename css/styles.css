@@ -12061,15 +12061,38 @@ body {
 .btn-close:focus {
   box-shadow: none;
 }
+@media (max-width: 575.98px) {
+  .btn-close {
+    font-size: 14px;
+  }
+}
 @media (min-width: 768px) {
   .btn-close {
     display: none;
   }
 }
 
+.container {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.intro-heading {
+  margin-bottom: 30px;
+  letter-spacing: 10px;
+}
+@media (min-width: 768px) {
+  .intro-heading {
+    letter-spacing: 15px;
+    margin-bottom: 37px;
+  }
+}
+
 .input-group-text {
   background-color: #fff;
   border: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
 }
 
 .form-check-input {
@@ -12109,14 +12132,25 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .form-control {
+    font-size: 18px;
+  }
+}
+.form-control::-moz-placeholder {
+  color: hsl(236, 9%, 61%);
+}
+.form-control::placeholder {
+  color: hsl(236, 9%, 61%);
 }
 .form-control:focus {
   box-shadow: none;
 }
 
-.shadow {
-  box-shadow: 0px 15px 30px 0px rgba(22, 23, 34, 0.05);
+.my-shadow {
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
 }
 
 .isCompleted {
@@ -12124,12 +12158,23 @@ body {
   color: hsl(236, 33%, 92%);
 }
 
+.list-group-item {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0 !important;
+}
 .list-group-item:hover .btn-close, .list-group-item:focus .btn-close, .list-group-item:active .btn-close {
   display: block;
 }
 
 .todo-main {
-  max-width: 600px;
+  max-width: 595px;
+  margin-top: 46px;
+}
+@media (min-width: 768px) {
+  .todo-main {
+    margin-top: 75px;
+  }
 }
 
 .meta {
