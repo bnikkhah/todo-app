@@ -12180,6 +12180,7 @@ body {
 .meta {
   font-size: 14px;
   padding: 1rem 1.5rem 1rem 1.5rem;
+  color: hsl(236, 9%, 61%);
 }
 .meta .col {
   display: flex;
@@ -12189,4 +12190,11 @@ body {
 .instruction {
   color: hsl(236, 9%, 61%);
   font-size: 14px;
+}
+
+.filter {
+  font-weight: 700;
+}
+.filter.active {
+  color: hsl(220, 98%, 61%);
 }/*# sourceMappingURL=styles.css.map */

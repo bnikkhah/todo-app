@@ -62,7 +62,10 @@
                 x-for="(todo, index) in todos"
                 :key="index"
               >
-                <li class="list-group-item p-0">
+                <li
+                  class="list-group-item p-0"
+                  :class="{ 'd-none' : todo.isFiltered }"
+                >
                   <div class="input-group">
                     <div class="input-group-text">
                       <input
@@ -105,20 +108,20 @@
                 <div class="col">
                   <ul class="list-inline mb-0">
                     <li
-                      class="list-inline-item cursor"
-                      @click="filterAllTodos"
+                      class="list-inline-item cursor filter active"
+                      @click="showAllTodos"
                     >
                       All
                     </li>
                     <li
-                      class="list-inline-item cursor"
-                      @click="filterActiveTodos"
+                      class="list-inline-item cursor filter"
+                      @click="showActiveTodos"
                     >
                       Active
                     </li>
                     <li
-                      class="list-inline-item cursor"
-                      @click="filterCompletedTodos"
+                      class="list-inline-item cursor filter"
+                      @click="showCompletedTodos"
                     >
                       Completed
                     </li>
@@ -152,27 +155,33 @@
       todos: [
         {
           item: 'Complete online Javascript course',
-          isCompleted: true
+          isCompleted: true,
+          isFiltered: false
         },
         {
           item: 'Jog around the park 3x',
-          isCompleted: false
+          isCompleted: false,
+          isFiltered: false
         },
         {
           item: '10 minutes meditation',
-          isCompleted: false
+          isCompleted: false,
+          isFiltered: false
         },
         {
           item: 'Read for 1 hour',
-          isCompleted: false
+          isCompleted: false,
+          isFiltered: false
         },
         {
           item: 'Pick up groceries',
-          isCompleted: false
+          isCompleted: false,
+          isFiltered: false
         },
         {
           item: 'Complete Todo App on Frontend Mentor',
-          isCompleted: false
+          isCompleted: false,
+          isFiltered: false
         },
       ],
       handleInsertTodo() {
@@ -194,21 +203,34 @@
         temporaryTodos[todoIndex].isCompleted = !temporaryTodos[todoIndex].isCompleted;
       },
       handleClearCompletedTodos() {
-        // this.todos = this.todos.filter((todo) => !todo.isCompleted)
-
+        this.todos = this.todos.filter((todo) => !todo.isCompleted)
       },
       handleTodosLeft() {
         const filteredList = this.todos.filter((todo) => !todo.isCompleted);
         return filteredList.length
       },
-      filterCompletedTodos() {
+      showCompletedTodos() {
+        this.todos.forEach((todo) => {
+          todo.isFiltered = false
 
+          if (! todo.isCompleted) {
+            todo.isFiltered = true
+          }
+        })
       },
-      filterActiveTodos() {
+      showActiveTodos() {
+        this.todos.forEach((todo) => {
+          todo.isFiltered = false
 
+          if (todo.isCompleted) {
+            todo.isFiltered = true
+          }
+        })
       },
-      filterAllTodos() {
-
+      showAllTodos() {
+        this.todos.forEach((todo) => {
+          todo.isFiltered = false
+        })
       }
     }))
   })
