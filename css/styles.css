@@ -12045,6 +12045,14 @@ body {
     background-image: url("../images/bg-desktop-light.jpg");
   }
 }
+body.dark {
+  background-color: hsl(235, 21%, 11%);
+}
+@media (min-width: 768px) {
+  body.dark {
+    background-image: url("../images/bg-desktop-dark.jpg");
+  }
+}
 
 .cursor {
   cursor: pointer;
@@ -12162,6 +12170,7 @@ body {
   border-right: 0;
   border-left: 0;
   border-radius: 0 !important;
+  border: 0;
 }
 .list-group-item:hover .btn-close, .list-group-item:focus .btn-close, .list-group-item:active .btn-close {
   display: block;

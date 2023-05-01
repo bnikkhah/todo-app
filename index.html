@@ -21,17 +21,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
-<body>
+<body
+  :class="{ 'dark' : darkMode }"
+  x-data="todoData"
+>
   <main
     role="main"
     class="text-center todo-main mx-auto"
-    x-data="todoData"
   >
     <div class="container">
       <div class="row">
         <div class="col-12">
 
-          <h1 class="text-white fw-bold text-start intro-heading">TODO</h1>
+          <div class="row">
+            <div class="col-6">
+              <h1 class="text-white fw-bold text-start intro-heading">TODO</h1>
+            </div>
+            <div class="col-6 text-end">
+              <img
+                src="./images/icon-moon.svg"
+                alt="Dark mode"
+                class="cursor"
+                x-show="! darkMode"
+                @click="handleDarkMode"
+              >
+              <img
+                src="./images/icon-sun.svg"
+                alt="Light mode"
+                class="cursor"
+                x-show="darkMode"
+                @click="handleDarkMode"
+              >
+            </div>
+          </div>
 
           <!-- Todo insert -->
           <div class="input-group mb-4">
@@ -64,7 +86,7 @@
               >
                 <li
                   class="list-group-item p-0"
-                  :class="{ 'd-none' : todo.isFiltered }"
+                  x-show="! todo.isFiltered"
                 >
                   <div class="input-group">
                     <div class="input-group-text">
@@ -143,6 +165,7 @@
   document.addEventListener('alpine:init', () => {
     Alpine.data('todoData', () => ({
       todoText: '',
+      darkMode: false,
       filters: [
         {
           name: 'All',
@@ -189,6 +212,9 @@
           isFiltered: false
         },
       ],
+      handleDarkMode() {
+        this.darkMode = ! this.darkMode
+      },
       handleInsertTodo() {
         this.todos = [
           ...this.todos,

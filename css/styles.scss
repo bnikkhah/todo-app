@@ -24,6 +24,14 @@ body {
     @include media-breakpoint-up(md) {
         background-image: url('../images/bg-desktop-light.jpg');
     }
+
+    &.dark {
+        background-color: hsl(235, 21%, 11%);
+
+        @include media-breakpoint-up(md) {
+            background-image: url('../images/bg-desktop-dark.jpg');
+        }
+    }
 }
 
 .cursor {
@@ -145,6 +153,7 @@ body {
     border-right: 0;
     border-left: 0;
     border-radius: 0 !important;
+    border: 0;
 
     &:hover,
     &:focus,
