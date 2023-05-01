@@ -107,24 +107,15 @@
                 </div>
                 <div class="col">
                   <ul class="list-inline mb-0">
-                    <li
-                      class="list-inline-item cursor filter active"
-                      @click="showAllTodos"
-                    >
-                      All
-                    </li>
-                    <li
-                      class="list-inline-item cursor filter"
-                      @click="showActiveTodos"
-                    >
-                      Active
-                    </li>
-                    <li
-                      class="list-inline-item cursor filter"
-                      @click="showCompletedTodos"
-                    >
-                      Completed
-                    </li>
+                    <template x-for="(filter, index) in filters">
+                      <li
+                        class="list-inline-item cursor filter"
+                        :class="{ 'active' : filter.isActive }"
+                        @click="handleFilter(filter)"
+                        x-text="filter.name"
+                      >
+                      </li>
+                    </template>
                   </ul>
                 </div>
               <div class="col justify-content-end">
@@ -152,6 +143,20 @@
   document.addEventListener('alpine:init', () => {
     Alpine.data('todoData', () => ({
       todoText: '',
+      filters: [
+        {
+          name: 'All',
+          isActive: true
+        },
+        {
+          name: 'Active',
+          isActive: false
+        },
+        {
+          name: 'Completed',
+          isActive: false
+        },
+      ],
       todos: [
         {
           item: 'Complete online Javascript course',
@@ -195,6 +200,39 @@
 
         this.todoText = '';
       },
+      handleFilter(filter) {
+        this.filters.forEach((filter) => {
+          filter.isActive = false
+        })
+
+        switch (filter.name) {
+          case 'All':
+            this.todos.forEach((todo) => {
+              todo.isFiltered = false
+            })
+            break;
+          case 'Active':
+            this.todos.forEach((todo) => {
+              todo.isFiltered = false
+
+              if (todo.isCompleted) {
+                todo.isFiltered = true
+              }
+            })
+            break;
+          case 'Completed':
+            this.todos.forEach((todo) => {
+              todo.isFiltered = false
+
+              if (! todo.isCompleted) {
+                todo.isFiltered = true
+              }
+            })
+            break;
+        }
+
+        filter.isActive = true
+      },
       handleRemoveTodo(todoIndex) {
         this.todos = this.todos.filter((_, index) => index !== todoIndex)
       },
@@ -209,29 +247,6 @@
         const filteredList = this.todos.filter((todo) => !todo.isCompleted);
         return filteredList.length
       },
-      showCompletedTodos() {
-        this.todos.forEach((todo) => {
-          todo.isFiltered = false
-
-          if (! todo.isCompleted) {
-            todo.isFiltered = true
-          }
-        })
-      },
-      showActiveTodos() {
-        this.todos.forEach((todo) => {
-          todo.isFiltered = false
-
-          if (todo.isCompleted) {
-            todo.isFiltered = true
-          }
-        })
-      },
-      showAllTodos() {
-        this.todos.forEach((todo) => {
-          todo.isFiltered = false
-        })
-      }
     }))
   })
 </script>
