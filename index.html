@@ -66,12 +66,14 @@
                 type="checkbox"
                 value=""
                 aria-label="Checkbox for following text input"
+                @click="toggleTodoComplete = !toggleTodoComplete"
               />
             </div>
 
             <input
               type="text"
               class="form-control"
+              :class="{ 'isCompleted' : toggleTodoComplete }"
               aria-label="Text input with checkbox"
               placeholder="Create a new todo..."
               x-model="todoText"
@@ -197,6 +199,7 @@
     Alpine.data('todoData', () => ({
       todoText: '',
       darkMode: false,
+      toggleTodoComplete: false,
       filters: [
         {
           name: 'All',
@@ -251,7 +254,7 @@
           ...this.todos,
           {
             item: this.todoText,
-            isCompleted: false
+            isCompleted: this.toggleTodoComplete
           }
         ]
 
