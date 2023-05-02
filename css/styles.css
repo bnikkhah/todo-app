@@ -12038,7 +12038,6 @@ body {
   background-repeat: no-repeat;
   background-image: url("../images/bg-mobile-light.jpg");
   background-position: top center;
-  box-shadow: 0 10px 20px rgba(22, 23, 34, 0.19), 0 6px 6px rgba(22, 23, 34, 0.23);
 }
 @media (min-width: 768px) {
   body {
@@ -12100,11 +12099,18 @@ body.dark {
   background-color: #fff;
   border: 0;
   padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-right: 0.75rem;
+  border-radius: 0;
+}
+@media (min-width: 768px) {
+  .input-group-text {
+    padding-right: 1.25rem;
+  }
 }
 
 .form-check-input {
   border-color: hsl(236, 33%, 92%);
+  background-color: transparent;
 }
 .form-check-input:focus {
   box-shadow: none;
@@ -12118,12 +12124,17 @@ body.dark {
 .form-check-input:checked[type=checkbox]:before {
   content: "";
   position: absolute;
-  top: 7px;
   left: 50%;
   transform: translateX(-50%);
   background-image: url("../images/icon-check.svg");
   width: 11px;
   height: 9px;
+  top: 6px;
+}
+@media (min-width: 768px) {
+  .form-check-input:checked[type=checkbox]:before {
+    top: 8px;
+  }
 }
 .form-check-input[type=checkbox] {
   border-radius: 9999px;
@@ -12131,16 +12142,27 @@ body.dark {
 }
 
 .form-check-input {
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.25em;
+  height: 1.25em;
+}
+@media (min-width: 768px) {
+  .form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+  }
 }
 
 .form-control {
   border: 0;
-  padding-top: 1rem;
+  padding-top: 1.25rem;
   padding-bottom: 1rem;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
+}
+@media (max-width: 575.98px) {
+  .form-control {
+    padding-left: 0;
+  }
 }
 @media (min-width: 768px) {
   .form-control {
@@ -12166,14 +12188,48 @@ body.dark {
   color: hsl(236, 33%, 92%);
 }
 
+.todo-list.dark {
+  background-color: hsl(235, 24%, 19%);
+}
+.todo-list.dark .list-group-item {
+  border-color: hsl(237, 14%, 26%);
+}
+.todo-list.dark .form-control,
+.todo-list.dark .input-group-text {
+  background-color: hsl(235, 24%, 19%);
+  color: hsl(233, 11%, 84%);
+}
+.todo-list template + .list-group-item {
+  border-top: 0;
+}
+.todo-list template + .list-group-item .input-group-text {
+  border-top-left-radius: 0.375rem !important;
+}
+.todo-list template + .list-group-item .form-control {
+  border-top-right-radius: 0.375rem !important;
+}
+
 .list-group-item {
   border-right: 0;
   border-left: 0;
   border-radius: 0 !important;
-  border: 0;
+  background-color: transparent;
+  border-color: hsl(236, 33%, 92%);
 }
 .list-group-item:hover .btn-close, .list-group-item:focus .btn-close, .list-group-item:active .btn-close {
   display: block;
+}
+
+.add-todo .input-group-text {
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+.add-todo.dark .form-control {
+  color: hsl(233, 11%, 84%);
+}
+.add-todo.dark .input-group-text,
+.add-todo.dark .form-control {
+  background-color: hsl(235, 24%, 19%);
 }
 
 .todo-main {
@@ -12187,9 +12243,33 @@ body.dark {
 }
 
 .meta {
-  font-size: 14px;
   padding: 1rem 1.5rem 1rem 1.5rem;
   color: hsl(236, 9%, 61%);
+  font-size: 12px;
+}
+.meta span:hover, .meta span:focus,
+.meta li:hover,
+.meta li:focus {
+  color: hsl(235, 19%, 35%);
+}
+.meta.dark span:hover, .meta.dark span:focus,
+.meta.dark li:hover,
+.meta.dark li:focus {
+  color: hsl(233, 11%, 84%);
+}
+.meta.mobile {
+  font-size: 14px;
+}
+.meta.mobile .list-inline-item:not(:last-child) {
+  margin-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .meta {
+    font-size: 14px;
+  }
+}
+.meta span:hover {
+  color: hsl(235, 19%, 35%);
 }
 .meta .col {
   display: flex;

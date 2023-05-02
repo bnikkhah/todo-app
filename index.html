@@ -56,7 +56,10 @@
           </div>
 
           <!-- Todo insert -->
-          <div class="input-group mb-4">
+          <div
+            class="input-group mb-4 add-todo"
+            :class="{ 'dark' : darkMode }"
+          >
             <div class="input-group-text">
               <input
                 class="form-check-input mt-0"
@@ -78,7 +81,11 @@
           </div>
 
           <!-- Todo list -->
-          <div class="todo-list my-shadow rounded">
+          <div
+            class="todo-list my-shadow rounded"
+            :class="{ 'dark' : darkMode }"
+          >
+
             <ul class="list-group">
               <template
                 x-for="(todo, index) in todos"
@@ -120,14 +127,17 @@
               </template>
             </ul>
 
-            <div class="meta">
+            <div
+              class="meta desktop"
+              :class="{ 'dark' : darkMode }"
+            >
               <div class="row g-0">
                 <div class="col justify-content-start">
                   <span>
                     <span x-text="handleTodosLeft"></span> items left
                   </span>
                 </div>
-                <div class="col">
+                <div class="col d-none d-md-block">
                   <ul class="list-inline mb-0">
                     <template x-for="(filter, index) in filters">
                       <li
@@ -152,6 +162,27 @@
             </div>
 
           </div>
+
+          <div
+            class="meta d-md-none mobile rounded mt-3 bg-white"
+            :class="{ 'dark' : darkMode }"
+          >
+              <div class="row g-0">
+                <div class="col-12">
+                  <ul class="list-inline mb-0">
+                    <template x-for="(filter, index) in filters">
+                      <li
+                        class="list-inline-item cursor filter"
+                        :class="{ 'active' : filter.isActive }"
+                        @click="handleFilter(filter)"
+                        x-text="filter.name"
+                      >
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
           <p class="mt-5 instruction">Drag and drop to reorder list</p>
         </div>
