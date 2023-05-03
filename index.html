@@ -96,6 +96,11 @@
                 <li
                   class="list-group-item p-0"
                   x-show="! todo.isFiltered"
+                  draggable="true"
+                  @dragstart="startDrag($event, index)"
+                  @drop="onDrop($event, index)"
+                  @dragover.prevent
+                  @dragenter.prevent
                 >
                   <div class="input-group">
                     <div class="input-group-text">
@@ -197,6 +202,17 @@
 <script>
   document.addEventListener('alpine:init', () => {
     Alpine.data('todoData', () => ({
+      startDrag(evt, todoIndex) {
+        evt.dataTransfer.dropEffect = 'move'
+        evt.dataTransfer.effectAllowed = 'move'
+        evt.dataTransfer.setData('todoIndex', todoIndex)
+      },
+      onDrop(evt, dropTodoIndex) {
+        const draggedTodoIndex = evt.dataTransfer.getData('todoIndex')
+        const tmp = this.todos[draggedTodoIndex]
+        this.todos[draggedTodoIndex] = this.todos[dropTodoIndex]
+        this.todos[dropTodoIndex] = tmp
+      },
       todoText: '',
       darkMode: false,
       toggleTodoComplete: false,
