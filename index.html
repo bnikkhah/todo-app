@@ -266,6 +266,10 @@
         this.darkMode = ! this.darkMode
       },
       handleInsertTodo() {
+        if (! this.todoText.length) {
+          return;
+        }
+
         this.todos = [
           ...this.todos,
           {
