@@ -12119,6 +12119,7 @@ body.dark {
 .form-check-input:checked[type=checkbox] {
   background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   position: relative;
+  border-color: #fff;
 }
 .form-check-input:checked[type=checkbox]:after {
   background-color: transparent;
@@ -12131,7 +12132,7 @@ body.dark {
   background-image: url("../images/icon-check.svg");
   width: 11px;
   height: 9px;
-  top: 6px;
+  top: 5px;
 }
 @media (min-width: 768px) {
   .form-check-input:checked[type=checkbox]:before {
@@ -12141,9 +12142,15 @@ body.dark {
 .form-check-input[type=checkbox] {
   border-radius: 9999px;
   cursor: pointer;
-  border: 1px solid #fff;
-  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border: 1px solid hsl(236, 33%, 92%);
   position: relative;
+}
+.form-check-input[type=checkbox]:hover {
+  background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  border-color: #fff;
+}
+.form-check-input[type=checkbox]:active {
+  filter: none;
 }
 .form-check-input[type=checkbox]:after {
   content: "";
@@ -12218,19 +12225,23 @@ body.dark {
   background-color: hsl(235, 24%, 19%);
   color: hsl(233, 11%, 84%);
 }
+.todo-list.dark .form-control.isCompleted,
+.todo-list.dark .input-group-text.isCompleted,
+.add-todo.dark .form-control.isCompleted,
+.add-todo.dark .input-group-text.isCompleted {
+  color: hsl(233, 14%, 35%);
+}
 .todo-list.dark .form-check-input,
 .add-todo.dark .form-check-input {
   background: none;
   border: 1px solid hsl(237, 14%, 26%);
 }
-.todo-list.dark .form-check-input:hover, .todo-list.dark .form-check-input:focus,
-.add-todo.dark .form-check-input:hover,
-.add-todo.dark .form-check-input:focus {
+.todo-list.dark .form-check-input:hover,
+.add-todo.dark .form-check-input:hover {
   background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
-.todo-list.dark .form-check-input:hover:after, .todo-list.dark .form-check-input:focus:after,
-.add-todo.dark .form-check-input:hover:after,
-.add-todo.dark .form-check-input:focus:after {
+.todo-list.dark .form-check-input:hover:after,
+.add-todo.dark .form-check-input:hover:after {
   content: "";
   background-color: hsl(235, 24%, 19%);
 }
@@ -12291,16 +12302,26 @@ body.dark {
     margin-top: 75px;
   }
 }
+@media (max-width: 575.98px) {
+  .todo-main .theme-icon {
+    width: 20px;
+  }
+}
 
 .meta {
   padding: 1rem 1.5rem 1rem 1.5rem;
   color: hsl(236, 9%, 61%);
   font-size: 12px;
+  background-color: #fff;
 }
 .meta span:hover, .meta span:focus,
 .meta li:hover,
 .meta li:focus {
   color: hsl(235, 19%, 35%);
+}
+.meta.dark {
+  background-color: hsl(235, 24%, 19%);
+  color: hsl(234, 11%, 52%);
 }
 .meta.dark span:hover, .meta.dark span:focus,
 .meta.dark li:hover,
@@ -12329,6 +12350,9 @@ body.dark {
 .instruction {
   color: hsl(236, 9%, 61%);
   font-size: 14px;
+}
+.instruction.dark {
+  color: hsl(234, 11%, 52%);
 }
 
 .filter {

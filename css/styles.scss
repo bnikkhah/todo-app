@@ -100,6 +100,7 @@ body {
         // background-size: 12px;
         background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
         position: relative;
+        border-color: $white;
 
         &:after {
             background-color: transparent;
@@ -113,7 +114,7 @@ body {
             background-image: url('../images/icon-check.svg');
             width: 11px;
             height: 9px;
-            top: 6px;
+            top: 5px;
             
             @include media-breakpoint-up(md) {
                 top: 7px;
@@ -124,9 +125,18 @@ body {
     &[type=checkbox] {
         border-radius: 9999px;
         cursor: pointer;
-        border: 1px solid $white;
-        background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        border: 1px solid hsl(236, 33%, 92%);
+        // background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
         position: relative;
+
+        &:hover {
+            background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+            border-color: $white;
+        }
+
+        &:active {
+            filter: none;
+        }
 
         &:after {
             content: '';
@@ -199,14 +209,17 @@ body {
         .input-group-text {
             background-color: hsl(235, 24%, 19%);
             color: hsl(233, 11%, 84%);
+
+            &.isCompleted {
+                color: hsl(233, 14%, 35%);
+            }
         }
 
         .form-check-input {
             background: none;
             border: 1px solid hsl(237, 14%, 26%);
 
-            &:hover,
-            &:focus {
+            &:hover {
                 background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
                 &:after {
@@ -290,12 +303,20 @@ body {
     @include media-breakpoint-up(md) {
         margin-top: 75px;
     }
+
+    .theme-icon {
+
+        @include media-breakpoint-down(sm) {
+            width: 20px;
+        }
+    }
 }
 
 .meta {
     padding: 1rem 1.5rem 1rem 1.5rem;
     color: hsl(236, 9%, 61%);
     font-size: 12px;
+    background-color: $white;
 
     span,
     li {
@@ -307,6 +328,8 @@ body {
     }
 
     &.dark {
+        background-color: hsl(235, 24%, 19%);
+        color: hsl(234, 11%, 52%);
 
         span,
         li {
@@ -349,6 +372,10 @@ body {
 .instruction {
     color: hsl(236, 9%, 61%);
     font-size: 14px;
+
+    &.dark {
+        color: hsl(234, 11%, 52%);
+    }
 }
 
 .filter {

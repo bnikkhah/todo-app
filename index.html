@@ -41,14 +41,14 @@
               <img
                 src="./images/icon-moon.svg"
                 alt="Dark mode"
-                class="cursor"
+                class="cursor theme-icon"
                 x-show="! darkMode"
                 @click="handleDarkMode"
               >
               <img
                 src="./images/icon-sun.svg"
                 alt="Light mode"
-                class="cursor"
+                class="cursor theme-icon"
                 x-show="darkMode"
                 @click="handleDarkMode"
               >
@@ -171,7 +171,7 @@
           </div>
 
           <div
-            class="meta d-md-none mobile rounded mt-3 bg-white"
+            class="meta d-md-none mobile rounded mt-3"
             :class="{ 'dark' : darkMode }"
           >
               <div class="row g-0">
@@ -191,7 +191,12 @@
               </div>
             </div>
 
-          <p class="mt-5 instruction">Drag and drop to reorder list</p>
+          <p
+            class="mt-5 instruction"
+            :class="{ 'dark' : darkMode }"
+          >
+            Drag and drop to reorder list
+          </p>
         </div>
       </div>
     </div>
