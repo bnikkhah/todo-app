@@ -12281,6 +12281,9 @@ body.dark {
   display: block;
 }
 
+.add-todo {
+  border-radius: 0.375rem;
+}
 .add-todo .input-group-text {
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
@@ -12313,6 +12316,8 @@ body.dark {
   color: hsl(236, 9%, 61%);
   font-size: 12px;
   background-color: #fff;
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
 }
 .meta span:hover, .meta span:focus,
 .meta li:hover,
