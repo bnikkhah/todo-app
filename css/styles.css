@@ -12046,6 +12046,7 @@ body {
 }
 body.dark {
   background-color: hsl(235, 21%, 11%);
+  background-image: url("../images/bg-mobile-dark.jpg");
 }
 @media (min-width: 768px) {
   body.dark {
